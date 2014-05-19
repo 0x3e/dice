@@ -1,4 +1,5 @@
-module.exports = class Dice
+$0x3e = exports? and exports or @$0x3e = {}
+class $0x3e.Dice
   constructor: (@arg) ->
     @args={}
     @roll() if @arg
