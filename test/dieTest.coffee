@@ -1,5 +1,5 @@
 expect = require('chai').expect
-Die    = require('die').Die
+global.Die    = require('die').Die
 describe 'Die', ->
   d = null
   it 'should have faces ', ->
