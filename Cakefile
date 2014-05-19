@@ -225,9 +225,10 @@ mocha = (options, callback) ->
   options = []
   options.push '--compilers'
   options.push 'coffee:coffee-script/register'
-  test = 'test/'+test+'Test.coffee'
-  options.push test
-  console.log(test)
+  if test
+    test = 'test/'+test+'Test.coffee'
+    options.push test
+    console.log(test)
   
   launch 'mocha', options, callback
 
