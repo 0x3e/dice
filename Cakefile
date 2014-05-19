@@ -19,7 +19,7 @@ log = (message, color, explanation) ->
   console.log (color or '') + message + reset + ' ' + (explanation or '')
 
 build = ->
-  options = ['-o', 'lib', '.']
+  options = ['-o', 'lib', 'coffee']
   launch 'coffee', options
 
 lint = ->
