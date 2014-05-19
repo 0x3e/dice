@@ -9,7 +9,7 @@ class $0x3e.Dice
     @arg = arg if arg
     arg=@arg.match(/(\d*)d(\d+)(.*)/)
     @args.num = arg[1]||1
-    @args.faces = arg[2]||0
+    @args.faces = parseInt(arg[2],10)||0
     @args.mod = arg[3]||0
     @args
 
