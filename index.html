@@ -13,6 +13,6 @@ module.load=function(url, callback)
   script.onload = callback;
   head.appendChild(script);
 }
-module.load("die.js",function(){Die=module.exports})
-module.load("dice.js",function(){Dice=module.exports})
+module.load("lib/die.js",function(){Die=module.exports})
+module.load("lib/dice.js",function(){Dice=module.exports})
 </script>
