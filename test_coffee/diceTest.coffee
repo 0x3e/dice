@@ -11,3 +11,4 @@ describe 'Dice', ->
     expect(d.dice[0].score).to.be.above 0
     expect(d.dice[0].score).to.be.within(1,2)
     expect(d.dice[0].score).to.be.below 3
+    expect(d.max).to.be.true if d.get_total() == 2

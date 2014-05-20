@@ -1,6 +1,7 @@
 $0x3e = exports? and exports or @$0x3e = {}
 class $0x3e.Dice
   constructor: (@arg) ->
+    @max=false
     @args={}
     @roll() if @arg
     @
@@ -23,6 +24,8 @@ class $0x3e.Dice
   get_total: (arg) ->
     @roll arg if arg
     return unless @arg
-    tot = parseInt(@args.mod)
+    tot = 0
     tot += parseInt(d.score,10) for d in @dice
+    @max = true if tot == @args.num * @args.faces
+    tot += parseInt(@args.mod)
     tot
