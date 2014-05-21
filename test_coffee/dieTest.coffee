@@ -1,5 +1,6 @@
+require("blanket")
 expect = require('chai').expect
-global.Die    = require('die').Die
+Die    = require('die').Die
 describe 'Die', ->
   d = null
   it 'should have faces ', ->

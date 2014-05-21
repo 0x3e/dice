@@ -9,13 +9,14 @@ bold = '\x1b[0;1m'
 green = '\x1b[0;32m'
 reset = '\x1b[0m'
 red = '\x1b[0;31m'
-task 'build', 'compile source', -> build -> log ":)", green
-task 'test', 'run tests', (options) -> 
-  test=options.test 
+task 'build', 'compile source', -> build -> build_test -> log ":)", green
+
+task 'test', 'run tests', (options) ->
+  test=options.test
   build -> mocha test, -> log ":)", green
 
 
-log = (message, color, explanation) -> 
+log = (message, color, explanation) ->
   console.log color + message + reset + ' ' + (explanation or '')
 
 launch = (cmd, options=[], callback) ->
@@ -27,10 +28,13 @@ launch = (cmd, options=[], callback) ->
     if status is 0
       callback()
     else
-      process.exit(status);
+      process.exit(status)
 
 build = (callback) ->
   options = ['-o','lib','coffee']
+  launch 'coffee', options, callback
+build_test = (callback) ->
+  options = ['-o','test_browser','test_coffee']
   launch 'coffee', options, callback
 
 mocha = (options, callback) ->

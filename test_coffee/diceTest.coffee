@@ -1,6 +1,7 @@
+require("blanket")
 expect = require('chai').expect
 Dice   = require('dice').Dice
-Dice.Die = require('die').Die
+Dice.prototype.Die = require('die').Die
 describe 'Dice', ->
   d = null
   it 'should have at least one die', ->
