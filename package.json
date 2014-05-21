@@ -1,0 +1,26 @@
+{
+  "name": "dice",
+  "version": "0.0.1",
+  "description": "Some dice",
+  "author": "0x3e",
+  "script": {
+    "test": "cake test",
+    "prepublish": "coffee -o lib coffee/*.coffee"
+  },
+  "main": "js/main.js",
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/0x3e/dice"
+},
+  "bugs": {
+  "url": "https://github.com/0x3e/dice/issues"
+},
+  "dependencies": {
+  },
+  "devDependencies": {
+    "coffee-script": "*",
+    "mocha": "*",
+    "chai": "*",
+    "which": "*"
+  }
+}

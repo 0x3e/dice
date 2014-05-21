@@ -1,6 +1,6 @@
 expect = require('chai').expect
-global.Die = require('die').Die
 Dice   = require('dice').Dice
+Dice.Die = require('die').Die
 describe 'Dice', ->
   d = null
   it 'should have at least one die', ->

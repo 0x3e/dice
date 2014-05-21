@@ -1,11 +1,12 @@
 $0x3e = exports? and exports or @$0x3e = {}
 class $0x3e.Dice
+  @Die: Die?
   constructor: (@arg) ->
     @max = @min = false
     @args={}
     @dice=[]
     @roll() if @arg
-    @
+
   parse_arg: (arg) ->
     @arg = arg if arg
     return unless @arg
