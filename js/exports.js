@@ -10,3 +10,5 @@ exports.load=function(url, callback)
   head.appendChild(script);
 }
 exports.get=function(mod){return exports[mod]}
+module={}
+require=function(a){return exports}

@@ -1,7 +1,8 @@
-$0x3e = exports? and exports or @$0x3e = {}
+$0x3e = exports? and exports or @$0x3e = this
 class $0x3e.Dice
-  @Die: Die?
+  Die: Die? and Die
   constructor: (@arg) ->
+    @die=Dice::Die? and Dice::Die or @die = Die
     @max = @min = false
     @args={}
     @dice=[]
@@ -21,7 +22,7 @@ class $0x3e.Dice
     args=@parse_arg arg unless arg == @arg
     return unless @args.num
     for [1..@args.num]
-      @dice.push new Die @args.faces
+      @dice.push new @die @args.faces
     @
 
   get_total: (arg) ->

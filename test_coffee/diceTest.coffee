@@ -1,12 +1,11 @@
+require("blanket")
 expect = require('chai').expect
 Dice   = require('dice').Dice
-Dice.Die = require('die').Die
+Dice.prototype.Die = require('die').Die
 describe 'Dice', ->
   d = null
   it 'should have at least one die', ->
-    console.log(Dice)
     d = new Dice('1d2')
-    console.log(d)
     expect(d.dice[0].faces).to.equal 2
   it 'should show undefined without dice', ->
     d = new Dice()

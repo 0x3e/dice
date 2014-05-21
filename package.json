@@ -22,5 +22,10 @@
     "mocha": "*",
     "chai": "*",
     "which": "*"
+  },
+  "config": {
+    "blanket": {
+      "pattern": "lib/di"
+     }
   }
 }
