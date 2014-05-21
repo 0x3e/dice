@@ -6,8 +6,6 @@ class $0x3e.Dice
     @dice=[]
     @roll() if @arg
     @
-  total: ->
-    @get_total()
   parse_arg: (arg) ->
     @arg = arg if arg
     return unless @arg
