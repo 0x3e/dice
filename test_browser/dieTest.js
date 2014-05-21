@@ -2,6 +2,8 @@
 (function() {
   var Die, expect;
 
+  require("blanket");
+
   expect = require('chai').expect;
 
   Die = require('die').Die;

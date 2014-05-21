@@ -2,6 +2,8 @@
 (function() {
   var Dice, expect;
 
+  require("blanket");
+
   expect = require('chai').expect;
 
   Dice = require('dice').Dice;
