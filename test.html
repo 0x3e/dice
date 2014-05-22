@@ -7,9 +7,11 @@
 <body>
   <div id="mocha"></div>
   <script src="vendor/mocha/mocha.js"></script>
-  <script src="vendor/blanket/blanket.min.js" data-cover-adapter="vendor/blanket/mocha-blanket.js" data-cover-flags="debug"></script>
-  <script>blanket=module.exports;</script>
+  <script>console.log(mocha)</script>
   <script src="js/exports.js"></script>
+  <script src="vendor/blanket/blanket.min.js" data-cover-flags="debug"></script>
+  <script>blanket=module.exports;</script>
+  <script src="vendor/blanket/mocha-blanket.js"></script>
   <script src="vendor/chai/chai.js"></script>
   <script>chai=module.exports;exports.expect=chai.expect</script>
   <script>mocha.setup('bdd')</script>
