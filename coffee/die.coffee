@@ -1,5 +1,4 @@
-$0x3e = exports? and exports or @$0x3e = this
-class $0x3e.Die
+class (exports ? this).Die
   constructor: (@faces) ->
     @faces = parseInt(@faces,10)
     @score = @roll()

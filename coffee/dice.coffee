@@ -1,5 +1,4 @@
-$0x3e = exports? and exports or @$0x3e = this
-class $0x3e.Dice
+class (exports ? this).Dice
   Die: Die? and Die
   constructor: (@arg) ->
     @die=Dice::Die? and Dice::Die or @die = Die
