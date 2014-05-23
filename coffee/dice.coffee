@@ -12,6 +12,7 @@ class (exports ? this).Dice
     @args.num = arg[1] || 1
     @args.faces = parseInt(arg[2],10) || 0
     @args.mod = arg[3] || 0
+
     @args
 
   roll: (arg) ->
@@ -19,7 +20,8 @@ class (exports ? this).Dice
     args = @parse_arg arg unless arg == @arg
     return unless @args.num
     @dice.push new @die @args.faces for [1..@args.num]
-    return this
+
+    this
 
   is_min: ->
     @get_unmod_total() == @args.num * 1
@@ -30,10 +32,11 @@ class (exports ? this).Dice
   get_total: (arg) ->
     @roll arg if arg
     return unless @dice.length
+
     @get_mod() + @get_unmod_total()
 
   get_unmod_total: -> @get_scores().reduce (x,y) -> x + y
 
-  get_scores: -> @dice.map (d) ->  parseInt d.score
+  get_scores: -> parseInt(d.score,10) for d in @dice
 
   get_mod: ->  parseInt(@args.mod,10)
