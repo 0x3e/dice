@@ -15,6 +15,8 @@ task 'test', 'run tests', (options) ->
   test=options.test
   build -> mocha test, -> log ":)", green
 
+task 'coverage', 'compile coverage report', -> build -> coverage -> log ":)", green
+
 
 log = (message, color, explanation) ->
   console.log color + message + reset + ' ' + (explanation or '')
@@ -54,3 +56,9 @@ mocha = (options, callback) ->
     options.push 'test_coffee/'
   
   launch 'mocha', options, callback
+
+coverage = (callback) ->
+  exec 'mocha --require blanket -R html-cov test_browser  > coverage.html', (err, stdout, stderr) ->
+    throw err if err
+    console.log "generated coverage.html"
+    callback?()

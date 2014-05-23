@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Some dice",
   "author": "0x3e",
-  "script": {
+  "scripts": {
     "test": "cake test",
     "prepublish": "coffee -o lib coffee/*.coffee"
   },

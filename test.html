@@ -7,11 +7,11 @@
 <body>
   <div id="mocha"></div>
   <script src="bower_components/blanket/dist/qunit/blanket.js" data-cover-flags="debug"></script>
-  <o script src="js/exports.js"></script>
+  <script src="js/exports.js"></script>
   <script src="bower_components/chai/chai.js"></script>
-  <o script>chai=module.exports;exports.expect=chai.expect</script>
+  <script>chai=module.exports;exports.expect=chai.expect</script>
   <script src="bower_components/mocha/mocha.js"></script>
-  <script src="vendor/blanket/mocha-blanket.js"></script>
+  <script src="bower_components/blanket/src/adapters/mocha-blanket.js"></script>
   <script>mocha.setup('bdd')</script>
   <script src="lib/die.js" data-cover></script>
   <script src="lib/dice.js" data-cover></script>
