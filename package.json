@@ -18,6 +18,7 @@
   "dependencies": {
   },
   "devDependencies": {
+    "bower": "*",
     "blanket": "*",
     "coffee-script": "*",
     "mocha": "*",
