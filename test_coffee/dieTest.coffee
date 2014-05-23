@@ -1,9 +1,9 @@
-require("blanket")
+require('blanket')
 expect = require('chai').expect
 Die    = require('die').Die
 describe 'Die', ->
   d = null
-  it 'should have faces ', ->
+  it 'should have faces', ->
     d = new Die 4
     expect(d.faces).to.equal 4
   it 'should have a suitable score ', ->

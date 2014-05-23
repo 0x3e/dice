@@ -22,15 +22,17 @@ class (exports ? this).Dice
     return this
 
   is_min: ->
-    @get_total() == @args.num * 1
+    @get_unmod_total() == @args.num * 1
 
   is_max: ->
-    @get_total() == @args.num * @args.faces
+    @get_unmod_total() == @args.num * @args.faces
 
   get_total: (arg) ->
     @roll arg if arg
     return unless @dice.length
-    @get_mod() + @get_scores().reduce (x,y) -> x + y
+    @get_mod() + @get_unmod_total()
+
+  get_unmod_total: -> @get_scores().reduce (x,y) -> x + y
 
   get_scores: -> @dice.map (d) ->  parseInt d.score
 

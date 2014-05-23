@@ -21,6 +21,6 @@
   "dependencies": {
     "mocha": "*",
     "chai": "*",
-    "blanket": "git://github.com/alex-seville/blanket#master"
+    "blanket": "git://github.com/0x3e/blanket#development"
   }
 }
