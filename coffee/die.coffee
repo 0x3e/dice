@@ -1,10 +1,8 @@
-$0x3e = exports? and exports or @$0x3e = this
-class $0x3e.Die
+class (exports ? this).Die
   constructor: (@faces) ->
     @faces = parseInt(@faces,10)
-    @score = @roll()
-    return
+    @roll()
 
   roll: ->
     return unless @faces
-    1 + Math.floor(Math.random() * @faces)
+    @score = 1 + (Math.random() * @faces) // 1

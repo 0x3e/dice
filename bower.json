@@ -1,0 +1,26 @@
+{
+  "name": "dice",
+  "version": "0.0.1",
+  "homepage": "https://github.com/0x3e/dice",
+  "authors": [
+    "0x3e <01@0x3e.com>"
+  ],
+  "description": "Some Dice",
+  "main": "js/main.js",
+  "keywords": [
+    "Random"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "test_browser"
+  ],
+  "dependencies": {
+    "mocha": "*",
+    "chai": "*",
+    "blanket": "git@github.com:alex-seville/blanket#master"
+  }
+}

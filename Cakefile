@@ -13,7 +13,9 @@ task 'build', 'compile source', -> build -> build_test -> log ":)", green
 
 task 'test', 'run tests', (options) ->
   test=options.test
-  build -> mocha test, -> log ":)", green
+  build -> build_test -> mocha test, -> log ":)", green
+
+task 'coverage', 'compile coverage report', -> build -> build_test -> coverage -> log ":)", green
 
 
 log = (message, color, explanation) ->
@@ -33,8 +35,9 @@ launch = (cmd, options=[], callback) ->
 build = (callback) ->
   options = ['-o','lib','coffee']
   launch 'coffee', options, callback
+
 build_test = (callback) ->
-  options = ['-o','test_browser','test_coffee']
+  options = ['-b','-o','test_browser','test_coffee']
   launch 'coffee', options, callback
 
 mocha = (options, callback) ->
@@ -54,3 +57,9 @@ mocha = (options, callback) ->
     options.push 'test_coffee/'
   
   launch 'mocha', options, callback
+
+coverage = (callback) ->
+  exec 'mocha --require blanket -R html-cov test_browser| sed -e "s#$(pwd)/lib/##g" > coverage.html', (err, stdout, stderr) ->
+    throw err if err
+    console.log "generated coverage.html"
+    callback?()

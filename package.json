@@ -3,21 +3,25 @@
   "version": "0.0.1",
   "description": "Some dice",
   "author": "0x3e",
-  "script": {
+  "scripts": {
     "test": "cake test",
+    "postinstall": "bower install",
     "prepublish": "coffee -o lib coffee/*.coffee"
   },
   "main": "js/main.js",
   "repository": {
-  "type": "git",
-  "url": "https://github.com/0x3e/dice"
-},
+    "type": "git",
+    "url": "https://github.com/0x3e/dice"
+  },
   "bugs": {
-  "url": "https://github.com/0x3e/dice/issues"
-},
+    "url": "https://github.com/0x3e/dice/issues"
+  },
   "dependencies": {
   },
   "devDependencies": {
+    "mime": "*",
+    "bower": "*",
+    "blanket": "*",
     "coffee-script": "*",
     "mocha": "*",
     "chai": "*",
@@ -25,7 +29,8 @@
   },
   "config": {
     "blanket": {
-      "pattern": "lib/di"
-     }
+      "pattern": "lib",
+      "data-cover-never": ["node_modules","bower_components"]
+    }
   }
 }

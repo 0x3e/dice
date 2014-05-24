@@ -1,36 +1,49 @@
-$0x3e = exports? and exports or @$0x3e = this
-class $0x3e.Dice
+class (exports ? this).Dice
   Die: Die? and Die
   constructor: (@arg) ->
-    @die=Dice::Die? and Dice::Die or @die = Die
-    @max = @min = false
-    @args={}
-    @dice=[]
+    @die = Dice::Die? and Dice::Die or @die = Die
+    @args = {}
     @roll() if @arg
 
-  parse_arg: (arg) ->
+  _parse_arg: (arg) ->
     @arg = arg if arg
-    return unless @arg
-    arg=@arg.match(/(\d*)d(\d+)(.*)/)
-    @args.num = arg[1]||1
-    @args.faces = parseInt(arg[2],10)||0
-    @args.mod = arg[3]||0
+    arg = @arg.match(/(\d*)d(\d+)(.*)/)
+    @args.num = arg[1] or 1
+    @args.faces = parseInt(arg[2],10) or 0
+    @args.mod = arg[3] or 0
+
     @args
 
   roll: (arg) ->
-    @dice=[]
-    args=@parse_arg arg unless arg == @arg
+    @dice = []
+    args = @_parse_arg arg unless arg is @arg
     return unless @args.num
-    for [1..@args.num]
-      @dice.push new @die @args.faces
-    @
+    @dice.push new @die @args.faces for [1..@args.num]
+
+    this
+
+  is_min: ->
+    @get_unmod_total() is @get_unmod_min()
+
+  is_max: ->
+    @get_unmod_total() is @get_unmod_max()
+
+  get_unmod_max: -> parseInt @args.num * @args.faces, 10
+
+  get_unmod_min: -> parseInt @args.num * 1, 10
+
+  get_max: -> @get_unmod_max() + @get_mod()
+
+  get_min: -> @get_unmod_min() + @get_mod()
 
   get_total: (arg) ->
     @roll arg if arg
     return unless @dice.length
-    tot = 0
-    tot += parseInt(d.score,10) for d in @dice
-    @max = tot == @args.num * @args.faces
-    @min = tot == @args.num * 1
-    tot += parseInt(@args.mod)
-    tot
+
+    @get_mod() + @get_unmod_total()
+
+  get_unmod_total: -> @get_scores().reduce (x,y) -> x + y
+
+  get_scores: -> parseInt(d.score,10) for d in @dice
+
+  get_mod: ->  parseInt(@args.mod,10)

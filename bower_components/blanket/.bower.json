@@ -1,0 +1,16 @@
+{
+  "name": "blanket",
+  "main": [
+    "./dist/qunit/blanket.js"
+  ],
+  "homepage": "https://github.com/alex-seville/blanket",
+  "_release": "6662482876",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "6662482876637efdc0151fca40754058b2b1df80"
+  },
+  "_source": "git@github.com:alex-seville/blanket.git",
+  "_target": "master",
+  "_originalSource": "git@github.com:alex-seville/blanket"
+}
