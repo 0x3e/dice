@@ -1,6 +1,6 @@
 class (exports ? this).Craft
   constructor: ->
-    craft = new Prob([
+    craft = new Probability([
       [1, 'Tailor']
       [1, 'Fletcher/Bowyer']
       [1, 'Glass Blower']
