@@ -8,6 +8,3 @@ coverage*
 .grunt
 build/Release
 node_modules
-test_browser
-lib
-bower_components
