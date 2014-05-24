@@ -1,7 +1,10 @@
-require('blanket')
-expect = require('chai').expect
-Dice   = require('dice').Dice
-Dice.prototype.Die = require('die').Die
+window? or (
+  require('blanket')
+  expect = require('chai').expect
+  Dice   = require('dice').Dice
+  Dice.prototype.Die = require('die').Die
+)
+
 describe 'Dice', ->
   d = null
   it 'should have at least one die', ->
@@ -11,6 +14,19 @@ describe 'Dice', ->
     d = new Dice()
     expect(d.roll()).to.be.undefined
     expect(d.get_total()).to.be.undefined
+    expect(d.get_total('2d6+4')).to.exist
+  it 'should have a correct max', ->
+    d = new Dice('10d2')
+    expect(d.get_max()).to.equal 20
+    d = new Dice('10d2+10')
+    expect(d.get_max()).to.equal 30
+  it 'should have a correct min', ->
+    d = new Dice('10d2')
+    expect(d.get_min()).to.equal 10
+    d = new Dice('10d2-10')
+    expect(d.get_min()).to.equal 0
+    d = new Dice('10d2+10')
+    expect(d.get_min()).to.equal 20
   it 'should have a suitable score ', ->
     d = new Dice('1d2')
     for i in [1..10]
@@ -78,3 +94,6 @@ describe 'Dice', ->
         expect(d.is_min()).to.be.true
       else
         expect(d.is_min()).to.be.false
+    for i in [1..10]
+      expect(d.get_total('30d2+5')
+      ).to.be.within d.get_min(), d.get_max()

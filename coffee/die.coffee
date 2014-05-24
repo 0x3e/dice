@@ -1,8 +1,8 @@
 class (exports ? this).Die
   constructor: (@faces) ->
     @faces = parseInt(@faces,10)
-    @score = @roll()
+    @roll()
 
   roll: ->
     return unless @faces
-    1 + (Math.random() * @faces) // 1
+    @score = 1 + (Math.random() * @faces) // 1

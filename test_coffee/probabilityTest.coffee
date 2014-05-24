@@ -1,6 +1,8 @@
-require('blanket')
-expect         = require('chai').expect
-Probability    = require('probability').Probability
+window? or (
+  require('blanket')
+  expect         = require('chai').expect
+  Probability    = require('probability').Probability
+)
 describe 'Probability', ->
   p = null
   it 'should have a table', ->
@@ -31,3 +33,8 @@ describe 'Probability', ->
     p4 = new Probability [[1,2,p3],[1,4,p2]]
     for [1..100]
       expect(p4.get()).to.exist
+  it 'should have additional entries', ->
+    p1 = new Probability [[3,'one'],[4,'two']]
+    p1.add_section [3,'three',p1]
+    for [1..100]
+      expect(p1.get()).to.exist

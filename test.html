@@ -7,9 +7,8 @@
 <body>
   <div id="mocha"></div>
   <script src="bower_components/blanket/dist/qunit/blanket.js" data-cover-flags="debug"></script>
-  <script src="js/exports.js"></script>
   <script src="bower_components/chai/chai.js"></script>
-  <script>chai=module.exports;exports.expect=chai.expect</script>
+  <script>expect=chai.expect</script>
   <script src="bower_components/mocha/mocha.js"></script>
   <script src="bower_components/blanket/src/adapters/mocha-blanket.js"></script>
   <script>mocha.setup('bdd')</script>
@@ -20,8 +19,8 @@
   <script src="test_browser/diceTest.js"></script>
   <script src="test_browser/probabilityTest.js"></script>
   <script>
-    mocha.checkLeaks();
-    mocha.run();
+    mocha.checkLeaks()
+    mocha.run()
   </script>
 </body>
 </html>

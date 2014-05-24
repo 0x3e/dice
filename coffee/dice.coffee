@@ -5,9 +5,8 @@ class (exports ? this).Dice
     @args = {}
     @roll() if @arg
 
-  parse_arg: (arg) ->
+  _parse_arg: (arg) ->
     @arg = arg if arg
-    return unless @arg
     arg = @arg.match(/(\d*)d(\d+)(.*)/)
     @args.num = arg[1] or 1
     @args.faces = parseInt(arg[2],10) or 0
@@ -17,7 +16,7 @@ class (exports ? this).Dice
 
   roll: (arg) ->
     @dice = []
-    args = @parse_arg arg unless arg is @arg
+    args = @_parse_arg arg unless arg is @arg
     return unless @args.num
     @dice.push new @die @args.faces for [1..@args.num]
 

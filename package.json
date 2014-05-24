@@ -10,12 +10,12 @@
   },
   "main": "js/main.js",
   "repository": {
-  "type": "git",
-  "url": "https://github.com/0x3e/dice"
-},
+    "type": "git",
+    "url": "https://github.com/0x3e/dice"
+  },
   "bugs": {
-  "url": "https://github.com/0x3e/dice/issues"
-},
+    "url": "https://github.com/0x3e/dice/issues"
+  },
   "dependencies": {
   },
   "devDependencies": {
@@ -29,7 +29,8 @@
   },
   "config": {
     "blanket": {
-      "pattern": "dice/lib/"
-     }
+      "pattern": "lib",
+      "data-cover-never": ["node_modules","bower_components"]
+    }
   }
 }
