@@ -20,12 +20,14 @@ describe 'Probability', ->
     expect(p.get_string 5 ).to.equal 'two'
     expect(p.get_string 6 ).to.equal ''
   it 'should have entries as links', ->
-    p1 = new Probability [[3, 'one'],[4,'two']]
+    p1 = new Probability [[3,'one'],[4,'two']]
     p2 = new Probability [[2,'three'],[3,'four']]
     p3 = new Probability [[1,'p1',p1],[1,'p2',p2]]
-    expect(p3.get().length).to.eql 2
+    expect(p3.get().length).to.equal 2
   it 'should have entries as deep links', ->
-    p1 = new Probability [[3, 'one'],[4,'two']]
+    p1 = new Probability [[3,'one'],[4,'two']]
     p2 = new Probability [[2,'three'],[3,'four']]
     p3 = new Probability [[1,'p1',p1],[1,'p2',p2]]
-    p4 = new Probability [[1,2,p3],[1,4 ,p2]]
+    p4 = new Probability [[1,2,p3],[1,4,p2]]
+    for [1..100]
+      expect(p4.get()).to.exist

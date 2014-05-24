@@ -15,7 +15,7 @@ task 'test', 'run tests', (options) ->
   test=options.test
   build -> mocha test, -> log ":)", green
 
-task 'coverage', 'compile coverage report', -> build -> coverage -> log ":)", green
+task 'coverage', 'compile coverage report', -> build -> build_test -> coverage -> log ":)", green
 
 
 log = (message, color, explanation) ->

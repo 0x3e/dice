@@ -5,6 +5,7 @@
   "author": "0x3e",
   "scripts": {
     "test": "cake test",
+    "preinstall": "bower install",
     "prepublish": "coffee -o lib coffee/*.coffee"
   },
   "main": "js/main.js",
@@ -28,7 +29,7 @@
   },
   "config": {
     "blanket": {
-      "pattern": "lib/di"
+      "pattern": "dice/lib/"
      }
   }
 }

@@ -10,6 +10,7 @@ class (exports ? this).Probability
 
   get_string: (which,join_string) ->
     return ([].concat @get(which)).join(join_string)
+
   get: (which) ->
     which ?= 1 + (Math.random() * @get_total_entries()) // 1
     row = @_get_row which
