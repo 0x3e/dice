@@ -5,4 +5,4 @@ class (exports ? this).Die
 
   roll: ->
     return unless @faces
-    1 + Math.floor(Math.random() * @faces)
+    1 + (Math.random() * @faces) // 1

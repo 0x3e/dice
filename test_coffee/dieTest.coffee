@@ -9,5 +9,5 @@ describe 'Die', ->
   it 'should have a suitable score ', ->
     d = new Die 2
     expect(d.score).to.be.above 0
-    expect(d.score).to.be.within(1,2)
+    expect(d.score).to.be.within 1,2
     expect(d.score).to.be.below 3

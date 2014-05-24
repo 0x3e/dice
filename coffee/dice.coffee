@@ -9,25 +9,33 @@ class (exports ? this).Dice
     @arg = arg if arg
     return unless @arg
     arg = @arg.match(/(\d*)d(\d+)(.*)/)
-    @args.num = arg[1] || 1
-    @args.faces = parseInt(arg[2],10) || 0
-    @args.mod = arg[3] || 0
+    @args.num = arg[1] or 1
+    @args.faces = parseInt(arg[2],10) or 0
+    @args.mod = arg[3] or 0
 
     @args
 
   roll: (arg) ->
     @dice = []
-    args = @parse_arg arg unless arg == @arg
+    args = @parse_arg arg unless arg is @arg
     return unless @args.num
     @dice.push new @die @args.faces for [1..@args.num]
 
     this
 
   is_min: ->
-    @get_unmod_total() == @args.num * 1
+    @get_unmod_total() is @get_unmod_min()
 
   is_max: ->
-    @get_unmod_total() == @args.num * @args.faces
+    @get_unmod_total() is @get_unmod_max()
+
+  get_unmod_max: -> parseInt @args.num * @args.faces, 10
+
+  get_unmod_min: -> parseInt @args.num * 1, 10
+
+  get_max: -> @get_unmod_max() + @get_mod()
+
+  get_min: -> @get_unmod_min() + @get_mod()
 
   get_total: (arg) ->
     @roll arg if arg
