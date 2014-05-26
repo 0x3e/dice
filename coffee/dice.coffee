@@ -9,7 +9,7 @@ class (exports ? this).Dice
   _parse_arg: (arg) ->
     args = {}
     @arg = arg if arg
-    return {} unless @arg and typeof @arg == 'string'
+    return {} unless @arg and typeof @arg is 'string'
     arg_match = Dice._match.exec @arg
     return unless arg_match
     args.num = arg_match[1] or 1
@@ -52,7 +52,7 @@ class (exports ? this).Dice
 
   _get_unmod_total: @_good() -> @get_scores().reduce (x,y) -> x + y
 
-  get_scores: @_good() -> parseInt(d.score,10) for d in @_dice
+  get_scores: @_good() -> parseInt d.get_score(),10 for d in @_dice
 
-  get_mod: @_good() -> parseInt(@args.mod,10)
+  get_mod: @_good() -> parseInt @args.mod,10
 
