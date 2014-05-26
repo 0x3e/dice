@@ -10,14 +10,48 @@ describe 'Dice', ->
   it 'should have at least one die', ->
     d = new Dice('1d2')
     expect(d.dice[0].faces).to.equal 2
-  it 'should show undefined without dice', ->
+  it 'total show undefined without dice 1', ->
     d = new Dice()
-    expect(d.roll()).to.be.undefined
     expect(d.get_total()).to.be.undefined
-    expect(d.get_total('2d6+4')).to.exist
-  it 'should have a correct max', ->
+  it 'total show undefined without dice 2', ->
+    expect(d.get_max()).to.be.undefined
+  it 'total show undefined without dice 3', ->
+    expect(d.get_min()).to.be.undefined
+  it 'total show undefined without dice 4', ->
+    expect(d.is_max()).to.be.undefined
+  it 'total show undefined without dice 5', ->
+    expect(d.is_min()).to.be.undefined
+  it 'should deal with good input 1', ->
+    expect(d.roll('d2').get_total()).to.be.within 1,2
+  it 'should deal with good input 2', ->
+    expect(d.roll('1 d 2').get_total()).to.be.within 1,2
+  it 'should deal with good input 2', ->
+    expect(d.roll('1 d 2 +1').get_total()).to.be.within 2,3
+  it 'should deal with good input 3', ->
+    expect(d.roll('1 d 2 + 1').get_total()).to.be.within 2,3
+  it 'should deal with good input 4', ->
+    expect(d.roll('   1   d   2   +   1   ').get_total()).to.be.within 2,3
+  it 'should deal with bad input 1', ->
+    d = new Dice()
+    expect(d.roll(1).get_total()).to.be.undefined
+  it 'should deal with bad input 2', ->
+    expect(d.roll('1').get_total()).to.be.undefined
+  it 'should deal with bad input 3', ->
+    expect(d.roll('g').get_total()).to.be.undefined
+  it 'should deal with bad input 4', ->
+    expect(d.roll('0').get_total()).to.be.undefined
+  it 'should deal with bad input 5', ->
+    expect(d.roll('d0').get_total()).to.be.undefined
+  it 'should deal with bad input 6', ->
+    expect(d.roll('0d0').get_total()).to.be.undefined
+  it 'should deal with bad input 7', ->
+    expect(d.roll('2d0').get_total()).to.be.undefined
+  it 'should deal with bad input 8', ->
+    expect(d.roll('0d8').get_total()).to.be.undefined
+  it 'should have a correct max 1', ->
     d = new Dice('10d2')
     expect(d.get_max()).to.equal 20
+  it 'should have a correct max 2', ->
     d = new Dice('10d2+10')
     expect(d.get_max()).to.equal 30
   it 'should have a correct min', ->
