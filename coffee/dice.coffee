@@ -1,8 +1,8 @@
 class (exports ? this).Dice
   Die: Die? and Die
+  @_match: /(\d*)\s*d\s*(\d+)\s*(.*)/
   constructor: (@arg) ->
     @Die = Dice::Die? and Dice::Die or @Die = Die
-    @match = /(\d*)\s*d\s*(\d+)\s*(.*)/
     @args = {}
     @roll() if @arg
 
@@ -10,7 +10,7 @@ class (exports ? this).Dice
     args = {}
     @arg = arg if arg
     return {} unless @arg and typeof @arg == 'string'
-    arg_match = @match.exec @arg
+    arg_match = Dice._match.exec @arg
     return unless arg_match
     args.num = arg_match[1] or 1
     args.faces = parseInt(arg_match[2],10) or 0
