@@ -7,9 +7,6 @@ window? or (
 
 describe 'Dice', ->
   d = null
-  it 'should have at least one die', ->
-    d = new Dice('1d2')
-    expect(d.dice[0].faces).to.equal 2
   it 'total show undefined without dice 1', ->
     d = new Dice()
     expect(d.get_total()).to.be.undefined
