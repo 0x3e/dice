@@ -29,9 +29,10 @@ class (exports ? this).Dice
   get_total: (arg) ->
     @roll arg if arg
     return unless @_is_good()
+
     @get_mod() + @_get_unmod_total()
 
-  _is_good: -> true if @args and @args.faces and @args.num > 0
+  _is_good: -> @args and @args.faces > 0 and @args.num > 0
 
   @_good: ->
     (f) ->
