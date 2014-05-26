@@ -1,4 +1,3 @@
-
 class (exports ? this).Dice
   Die: Die? and Die
   constructor: (@arg) ->
@@ -20,40 +19,40 @@ class (exports ? this).Dice
     args
 
   roll: (arg) ->
-    @dice = []
+    @_dice = []
     @args = @_parse_arg arg
-    return this unless @good_args()
-    @dice.push new @Die @args.faces for [1..@args.num]
+    return this unless @_is_good()
+    @_dice.push new @Die @args.faces for [1..@args.num]
 
     this
 
   get_total: (arg) ->
     @roll arg if arg
-    return unless @good_args()
+    return unless @_is_good()
     @get_mod() + @_get_unmod_total()
 
-  good_args: -> true if @args and @args.faces and @args.num > 0
+  _is_good: -> true if @args and @args.faces and @args.num > 0
 
-  @if_args: ->
+  @_good: ->
     (f) ->
       ->
-        f.apply(this, arguments) if @good_args()
+        f.apply(this, arguments) if @_is_good()
 
-  get_unmod_max: @if_args() -> parseInt @args.num * @args.faces, 10
+  _get_unmod_max: @_good() -> parseInt @args.num * @args.faces, 10
 
-  get_unmod_min: @if_args() -> parseInt @args.num * 1, 10
+  _get_unmod_min: @_good() -> parseInt @args.num * 1, 10
 
-  get_min: @if_args() -> @get_unmod_min() + @get_mod()
+  get_min: @_good() -> @_get_unmod_min() + @get_mod()
 
-  get_max: @if_args() -> @get_unmod_max() + @get_mod()
+  get_max: @_good() -> @_get_unmod_max() + @get_mod()
 
-  is_min: @if_args() -> @_get_unmod_total() is @get_unmod_min()
+  is_min: @_good() -> @_get_unmod_total() is @_get_unmod_min()
 
-  is_max: @if_args() -> @_get_unmod_total() is @get_unmod_max()
+  is_max: @_good() -> @_get_unmod_total() is @_get_unmod_max()
 
-  _get_unmod_total: @if_args() -> @get_scores().reduce (x,y) -> x + y
+  _get_unmod_total: @_good() -> @get_scores().reduce (x,y) -> x + y
 
-  get_scores: @if_args() -> parseInt(d.score,10) for d in @dice
+  get_scores: @_good() -> parseInt(d.score,10) for d in @_dice
 
-  get_mod: @if_args() -> parseInt(@args.mod,10)
+  get_mod: @_good() -> parseInt(@args.mod,10)
 
