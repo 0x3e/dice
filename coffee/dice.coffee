@@ -1,6 +1,6 @@
 class (exports ? this).Dice
   Die: Die? and Die
-  @_match: /(\d*)\s*d\s*(\d+)\s*(.*)/
+  _match: /(\d*)\s*d\s*(\d+)\s*(.*)/
   constructor: (@arg) ->
     @Die = Dice::Die? and Dice::Die or @Die = Die
     @args = {}
@@ -9,9 +9,9 @@ class (exports ? this).Dice
   _parse_arg: (arg) ->
     args = {}
     @arg = arg if arg
-    return {} unless @arg and typeof @arg is 'string'
-    arg_match = Dice._match.exec @arg
-    return unless arg_match
+    return args unless @arg and typeof @arg is 'string'
+    arg_match = @_match.exec @arg
+    return args unless arg_match
     args.num = arg_match[1] or 1
     args.faces = parseInt(arg_match[2],10) or 0
     args.mod = parseInt(arg_match[3].replace(/\s/g,''), 10) or 0
@@ -34,26 +34,26 @@ class (exports ? this).Dice
 
   _is_good: -> @args and @args.faces > 0 and @args.num > 0
 
-  @_good: ->
+  @_if_good: ->
     (f) ->
       ->
         f.apply(this, arguments) if @_is_good()
 
-  _get_unmod_max: @_good() -> parseInt @args.num * @args.faces, 10
+  get_mod: @_if_good() -> parseInt @args.mod,10
 
-  _get_unmod_min: @_good() -> parseInt @args.num * 1, 10
+  get_scores: @_if_good() -> parseInt d.get_score(),10 for d in @_dice
 
-  get_min: @_good() -> @_get_unmod_min() + @get_mod()
+  get_min: @_if_good() -> @_get_unmod_min() + @get_mod()
 
-  get_max: @_good() -> @_get_unmod_max() + @get_mod()
+  get_max: @_if_good() -> @_get_unmod_max() + @get_mod()
 
-  is_min: @_good() -> @_get_unmod_total() is @_get_unmod_min()
+  is_min: @_if_good() -> @_get_unmod_total() is @_get_unmod_min()
 
-  is_max: @_good() -> @_get_unmod_total() is @_get_unmod_max()
+  is_max: @_if_good() -> @_get_unmod_total() is @_get_unmod_max()
 
-  _get_unmod_total: @_good() -> @get_scores().reduce (x,y) -> x + y
+  _get_unmod_max: @_if_good() -> parseInt @args.num * @args.faces, 10
 
-  get_scores: @_good() -> parseInt d.get_score(),10 for d in @_dice
+  _get_unmod_min: @_if_good() -> parseInt @args.num * 1, 10
 
-  get_mod: @_good() -> parseInt @args.mod,10
+  _get_unmod_total: @_if_good() -> @get_scores().reduce (x,y) -> x + y
 
