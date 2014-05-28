@@ -1,5 +1,5 @@
 class (exports ? this).Probability
-  constructor: (@table) ->
+  constructor: (@table) -> return
 
   add_section: (ar) ->
     @table.push ar

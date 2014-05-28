@@ -21,23 +21,23 @@ class (exports ? this).Dice
   roll: (arg) ->
     @_dice = []
     @args = @_parse_arg arg
-    return this unless @_is_good()
+    return this unless @is_good()
     @_dice.push new @Die @args.faces for [1..@args.num]
 
     this
 
   get_total: (arg) ->
     @roll arg if arg
-    return unless @_is_good()
+    return unless @is_good()
 
     @get_mod() + @_get_unmod_total()
 
-  _is_good: -> @args and @args.faces > 0 and @args.num > 0
+  is_good: -> @args and @args.faces > 0 and @args.num > 0
 
   @_if_good: ->
     (f) ->
       ->
-        f.apply(this, arguments) if @_is_good()
+        f.apply(this, arguments) if @is_good()
 
   get_mod: @_if_good() -> parseInt @args.mod,10
 

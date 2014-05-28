@@ -6,7 +6,11 @@ class (exports ? this).View
     @el ob
 
   span: (ob) ->
-    ob.el = 'span'
+    ob.element = 'span'
+    @el ob
+
+  a: (ob) ->
+    ob.element = 'a'
     @el ob
 
   form: (ob) ->
@@ -16,15 +20,10 @@ class (exports ? this).View
   input: (ob) ->
     ob.element = 'input'
     el = @el ob
-    el.type = ob.type if ob.type
-    el
 
   el: (ob) ->
     el = document.createElement(ob.element)
-    el.id = ob.id if ob.id
-    el.className = ob.class  if ob.class
-    el.className += ob.classes  if ob.classes
-    el.innerHTML = ob.innerHTML  if ob.innerHTML
+    el[k] = v for own k,v of ob unless k is parent
     if ob.parent
       ob.parent.appendChild el
     else
@@ -40,5 +39,10 @@ class (exports ? this).View
     return
 
   remove: (el) ->
-    el.parentElement.removeChild(el)
+    @empty el
+    el.parentElement.removeChild el
     return
+  empty: (el) ->
+    while el.firstChild
+      el.removeChild el.firstChild
+
