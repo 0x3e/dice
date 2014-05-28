@@ -23,7 +23,6 @@ class (exports ? this).DicesView
     if dice.is_good()
       @views.push new DiceView(@views.length,this ,@out, dice)
   remove_dice: (dice_view) ->
-    console.log dice_view
     @views[dice_view.id] = undefined
     dice_view = undefined
 
