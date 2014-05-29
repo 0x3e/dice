@@ -6,19 +6,67 @@ var Dice, expect;
 describe('Dice', function() {
   var d;
   d = null;
-  it('should have at least one die', function() {
-    d = new Dice('1d2');
-    return expect(d.dice[0].faces).to.equal(2);
-  });
-  it('should show undefined without dice', function() {
+  it('total show undefined without dice 1', function() {
     d = new Dice();
-    expect(d.roll()).to.be.undefined;
-    expect(d.get_total()).to.be.undefined;
-    return expect(d.get_total('2d6+4')).to.exist;
+    return expect(d.get_total()).to.be.undefined;
   });
-  it('should have a correct max', function() {
+  it('total show undefined without dice 2', function() {
+    return expect(d.get_max()).to.be.undefined;
+  });
+  it('total show undefined without dice 3', function() {
+    return expect(d.get_min()).to.be.undefined;
+  });
+  it('total show undefined without dice 4', function() {
+    return expect(d.is_max()).to.be.undefined;
+  });
+  it('total show undefined without dice 5', function() {
+    return expect(d.is_min()).to.be.undefined;
+  });
+  it('should deal with good input 1', function() {
+    return expect(d.roll('d2').get_total()).to.be.within(1, 2);
+  });
+  it('should deal with good input 2', function() {
+    return expect(d.roll('1 d 2').get_total()).to.be.within(1, 2);
+  });
+  it('should deal with good input 2', function() {
+    return expect(d.roll('1 d 2 +1').get_total()).to.be.within(2, 3);
+  });
+  it('should deal with good input 3', function() {
+    return expect(d.roll('1 d 2 + 1').get_total()).to.be.within(2, 3);
+  });
+  it('should deal with good input 4', function() {
+    return expect(d.roll('   1   d   2   +   1   ').get_total()).to.be.within(2, 3);
+  });
+  it('should deal with bad input 1', function() {
+    d = new Dice();
+    return expect(d.roll(1).get_total()).to.be.undefined;
+  });
+  it('should deal with bad input 2', function() {
+    return expect(d.roll('1').get_total()).to.be.undefined;
+  });
+  it('should deal with bad input 3', function() {
+    return expect(d.roll('g').get_total()).to.be.undefined;
+  });
+  it('should deal with bad input 4', function() {
+    return expect(d.roll('0').get_total()).to.be.undefined;
+  });
+  it('should deal with bad input 5', function() {
+    return expect(d.roll('d0').get_total()).to.be.undefined;
+  });
+  it('should deal with bad input 6', function() {
+    return expect(d.roll('0d0').get_total()).to.be.undefined;
+  });
+  it('should deal with bad input 7', function() {
+    return expect(d.roll('2d0').get_total()).to.be.undefined;
+  });
+  it('should deal with bad input 8', function() {
+    return expect(d.roll('0d8').get_total()).to.be.undefined;
+  });
+  it('should have a correct max 1', function() {
     d = new Dice('10d2');
-    expect(d.get_max()).to.equal(20);
+    return expect(d.get_max()).to.equal(20);
+  });
+  it('should have a correct max 2', function() {
     d = new Dice('10d2+10');
     return expect(d.get_max()).to.equal(30);
   });

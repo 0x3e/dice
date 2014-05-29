@@ -8,15 +8,15 @@ describe('Die', function() {
   d = null;
   it('should have faces', function() {
     d = new Die(4);
-    expect(d.faces).to.equal(4);
+    expect(d.get_faces()).to.equal(4);
     d = new Die;
     return expect(d.roll()).to.equal(void 0);
   });
   return it('should have a suitable score ', function() {
     d = new Die(2);
-    expect(d.score).to.be.above(0);
-    expect(d.score).to.be.within(1, 2);
-    expect(d.score).to.be.below(3);
+    expect(d.get_score()).to.be.above(0);
+    expect(d.get_score()).to.be.within(1, 2);
+    expect(d.get_score()).to.be.below(3);
     expect(d.roll()).to.be.above(0);
     expect(d.roll()).to.be.within(1, 2);
     return expect(d.roll()).to.be.below(3);
