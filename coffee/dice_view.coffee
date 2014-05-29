@@ -13,7 +13,6 @@ class (exports ? this).DiceView
       element: 'a'
       innerHTML: 'roll'
       className: 'dice_roll'
-      parent: @con
     @roll_a.href = 'javascript:void(0)'
     @roll_a.onclick = =>
       @roll()
