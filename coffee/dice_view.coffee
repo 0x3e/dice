@@ -1,12 +1,16 @@
 class (exports ? this).DiceView
+  View: View? and View
   constructor: (@id, @parent, @up_e, @dice) ->
-    @up = new View(@up_e)
-    @con = @up.div
+    @View = DiceView::View? and DiceView::View or @View = View
+    @up = new @View(@up_e)
+    @con = @up.new
+      element: 'div'
       id: "dice#{@id}"
       className: 'dice'
       parent: @up_e
-    @view = new View(@con)
-    @roll_a = @view.a
+    @view = new @View(@con)
+    @roll_a = @view.new
+      element: 'a'
       innerHTML: 'roll'
       className: 'dice_roll'
       parent: @con
@@ -14,7 +18,8 @@ class (exports ? this).DiceView
     @roll_a.onclick = =>
       @roll()
       false
-    @delete_a = @view.a
+    @delete_a = @view.new
+      element: 'a'
       innerHTML: 'delete'
       className: 'dice_delete'
       parent: @con
@@ -22,11 +27,13 @@ class (exports ? this).DiceView
     @delete_a.onclick = =>
       @destructor()
       false
-    @label = @view.div
+    @label = @view.new
+      element: 'div'
       innerHTML: @dice.arg
       className: 'dice_label'
       parent: @con
-    @out = @view.div
+    @out = @view.new
+      element: 'div'
       className: 'dice_out'
       parent: @con
     @update()
@@ -34,18 +41,22 @@ class (exports ? this).DiceView
   update: () ->
     tot = @dice.get_total()
     @view.empty @out
-    _out = @view.div
+    _out = @view.new
+      element: 'div'
       innerHTML: @dice.get_total()
       parent: @out
-    _out.className += 'max' if @dice.is_max()
-    _out.className += 'min' if @dice.is_min()
+    _out.className = 'max' if @dice.is_max()
+    _out.className = 'min' if @dice.is_min()
+    return
 
   roll: () ->
     @dice.roll()
     @update()
+    return
 
   destructor: () ->
     @dice = null
     @view.remove @con
     @parent.remove_dice this
+    return
 

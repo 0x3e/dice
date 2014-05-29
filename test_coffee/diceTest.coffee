@@ -2,7 +2,7 @@ window? or (
   require('blanket')
   expect = require('chai').expect
   Dice   = require('dice').Dice
-  Dice.prototype.Die = require('die').Die
+  Dice::Die = require('die').Die
 )
 
 describe 'Dice', ->

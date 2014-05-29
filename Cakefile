@@ -1,5 +1,6 @@
 option '-t', '--test [name]', 'run a single test'
 fs = require 'fs'
+sys = require 'sys'
 {spawn, exec} = require 'child_process'
 
 which = require('which').sync
@@ -17,15 +18,14 @@ task 'test', 'run tests', (options) ->
 
 task 'coverage', 'compile coverage report', -> build -> build_test -> coverage -> log ":)", green
 
+task 'lint', 'coffeelint', -> lint -> log ":)", green
 
 log = (message, color, explanation) ->
   console.log color + message + reset + ' ' + (explanation or '')
 
 launch = (cmd, options=[], callback) ->
   cmd = which(cmd) if which
-  app = spawn cmd, options
-  app.stdout.pipe(process.stdout)
-  app.stderr.pipe(process.stderr)
+  app = spawn cmd, options, customFds: [0..2]
   app.on 'exit', (status) ->
     if status is 0
       callback()
@@ -63,3 +63,6 @@ coverage = (callback) ->
     throw err if err
     console.log "generated coverage.html"
     callback?()
+
+lint = (callback) ->
+  launch 'coffeelint', ['coffee'], callback
