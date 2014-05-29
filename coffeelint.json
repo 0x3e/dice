@@ -50,8 +50,8 @@
     },
     "no_implicit_braces": {
         "name": "no_implicit_braces",
-        "level": "warn",
-        "strict": true
+        "level": "ignore",
+        "strict": false
     },
     "no_plusplus": {
         "name": "no_plusplus",

@@ -1,15 +1,12 @@
 class (exports ? this).Probability
-  ###
-  # type is very important
-  ###
   constructor: (@table) -> return
 
   add_section: (ar) ->
     @table.push ar
-    return this
+    this
 
   get_string: (which,join_string) ->
-    return ([].concat @get(which)).join(join_string)
+    ([].concat @get(which)).join(join_string)
 
   get: (which) ->
     which ?= 1 + (Math.random() * @get_total_entries()) // 1
@@ -30,7 +27,7 @@ class (exports ? this).Probability
     for m in @table
       up += m[0]
       return m if up >= c
-    return []
+    []
 
   get_total_entries: ->
     (parseInt(m[0], 10) for m in @table).reduce((x, y) -> x + y)
