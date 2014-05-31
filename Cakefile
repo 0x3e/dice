@@ -10,7 +10,7 @@ bold = '\x1b[0;1m'
 green = '\x1b[0;32m'
 reset = '\x1b[0m'
 red = '\x1b[0;31m'
-task 'build', 'compile source', -> build -> build_test -> log ":)", green
+task 'build', 'compile source', -> build -> build_test -> jade -> css -> js -> coverage -> log ":)", green
 
 task 'test', 'run tests', (options) ->
   test=options.test
@@ -66,3 +66,20 @@ coverage = (callback) ->
 
 lint = (callback) ->
   launch 'coffeelint', ['coffee'], callback
+
+css = (callback) ->
+  exec 'stylus < stylus/c.stylus > style.css', (err, stdout, stderr) ->
+    throw err if err
+    console.log "generated style.html"
+    callback?()
+
+jade = (callback) ->
+  exec 'jade < jade/index.jade > index.html', (err, stdout, stderr) ->
+    throw err if err
+    console.log "generated index.html"
+    callback?()
+js = (callback) ->
+  exec 'cat lib/* > js.js', (err, stdout, stderr) ->
+    throw err if err
+    console.log "generated js.js"
+    callback?()

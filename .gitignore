@@ -11,3 +11,6 @@ node_modules
 test_browser
 lib
 bower_components
+index.html
+js.js
+style.css
