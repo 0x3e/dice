@@ -25,6 +25,9 @@
     "coffee-script": "*",
     "mocha": "*",
     "chai": "*",
+    "jade": "*",
+    "stylus": "*",
+    "csslint": "*",
     "which": "*"
   },
   "config": {

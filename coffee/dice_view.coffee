@@ -12,7 +12,7 @@ class (exports ? this).DiceView
     @roll_a = @view.new
       element: 'a'
       innerHTML: 'roll'
-      className: 'dice_roll'
+      className: 'roll'
     @roll_a.href = 'javascript:void(0)'
     @roll_a.onclick = =>
       @roll()
@@ -20,7 +20,7 @@ class (exports ? this).DiceView
     @delete_a = @view.new
       element: 'a'
       innerHTML: 'delete'
-      className: 'dice_delete'
+      className: 'delete'
       parent: @con
     @delete_a.href = 'javascript:void(0)'
     @delete_a.onclick = =>
@@ -29,11 +29,11 @@ class (exports ? this).DiceView
     @label = @view.new
       element: 'div'
       innerHTML: @dice.arg
-      className: 'dice_label'
+      className: 'label'
       parent: @con
     @out = @view.new
       element: 'div'
-      className: 'dice_out'
+      className: 'out'
       parent: @con
     @update()
 
@@ -44,8 +44,12 @@ class (exports ? this).DiceView
       element: 'div'
       innerHTML: @dice.get_total()
       parent: @out
+    @out.className += ' rolling'
     _out.className = 'max' if @dice.is_max()
     _out.className = 'min' if @dice.is_min()
+    setTimeout(=>
+      @out.className = @out.className.replace(' rolling','')
+    , 500)
     return
 
   roll: () ->
