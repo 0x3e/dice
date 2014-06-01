@@ -44,8 +44,12 @@ class (exports ? this).DiceView
       element: 'div'
       innerHTML: @dice.get_total()
       parent: @out
+    @out.className += ' rolling'
     _out.className = 'max' if @dice.is_max()
     _out.className = 'min' if @dice.is_min()
+    setTimeout(=>
+      @out.className = @out.className.replace(' rolling','')
+    , 500)
     return
 
   roll: () ->
