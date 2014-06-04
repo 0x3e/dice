@@ -28,6 +28,7 @@
     "jade": "*",
     "stylus": "*",
     "csslint": "*",
+    "uglify-js": "*",
     "which": "*"
   },
   "config": {

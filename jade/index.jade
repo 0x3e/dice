@@ -2,12 +2,10 @@ doctype html
 html(lang="en")
   head
     title= Dice
-    link(
-      rel='stylesheet'
-      href='style.css'
-      type="text/css"
-    )
-    script(src='js.js')
+    style
+      include style.css
+    script
+      include js.js
     script.
       main=Main()
   body
